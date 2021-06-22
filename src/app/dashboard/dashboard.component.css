@@ -31,7 +31,6 @@ input[type=checkbox]
 }
 .btn-add{
     width: 100%;
-    margin-top: 2%;
 }
 
  .top-container{
@@ -62,7 +61,7 @@ input[type=checkbox]
     position: fixed;
     width: 90%;
     left: 5%;
-    top: 85%;
+    top: 90%;
 }
 .delete{
     text-align: end;
