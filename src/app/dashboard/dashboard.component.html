@@ -1,0 +1,86 @@
+<nav-bar></nav-bar>
+<div class="container top-container">
+    <div class="row m10 inner-top">
+      <div class="col-xs-7  col-7 form-group">
+          <input type="email" class="form-control text-field" id="search-text" aria-describedby="search-text" 
+          [(ngModel)]="searchText" placeholder="Enter title to search" 
+          autofocus>
+      </div>
+      <div class="col-xs-5 col-5 delete" *ngIf="displayDelete">
+          <img src="../../assets/delete.png" class="delete-btn"  (click)="open(content)" data-toggle="modal" data-target="#exampleModal">
+          <span>{{itemCount}}</span>
+          <!-- <button *ngIf="displayDelete" class="danger" >Delete</button>   -->
+      </div>
+      <!-- <div class="col-xs-2 col-2" *ngIf="displayDelete">
+        <img src="../../assets/cart.png" class="delete-btn" data-toggle="modal" data-target="#exampleModal">
+        <div>{{itemCount}}</div>
+    </div> -->
+    </div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete Items</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+<p>Are you sure to delete the following item :</p>
+<ul *ngFor="let p of cartDelete"> 
+    <li>{{p.title}}</li>
+</ul>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="DeleteFiles(); modal.close('Save click')">Delete</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
+
+<div class="list inner-container">
+        <div class="card mb-3" *ngFor="let p of dataSet | appFilter: searchText"
+        appHighlight [searchedWord]="searchText">
+            <div class="row">
+              <div class="col-xs-2 col-2 img-div">
+                <img
+                class="img-fluid"
+                src="{{p.imageURL}}"/>
+              </div>
+                <div class="col-sm-8 col-8">
+                  <h5 class="card-title">{{p.title}}</h5>
+                  <p class="card-text">{{p.id}}</p>
+                  <p class="card-text"><small class="text-muted">&euro;{{p.price}}</small></p>                  
+                </div> 
+                <div class="col-xs-2 col-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="addToCart($event, p)"> 
+                    </div>
+                </div>      
+              <!-- <div class="col-md-2 col-sm-2 col-xs-2 box-upper">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="addToCart($event, p)"> 
+                </div>
+              </div>
+          -->
+            </div>
+          </div>  
+            <div class="row" *ngIf="(dataSet | appFilter: searchText).length == 0">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                  <img
+                  class="img-thumbnail .img-responsive .flex-items"
+                  src="../../assets/fallback.png"
+                />              </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="card-body">
+                    <p class="card-text">No Items Found</p>
+                  </div>       
+                </div>
+              </div>
+        </div>  
+        <div class="footer">
+        <form>
+            <div class="form-group">
+            <input type="text" required [(ngModel)]="newItem" minlength="3"  name="newItem" class="form-control" placeholder="Enter the name of Item to be added..."/>
+            <button class="btn-primary btn-add" (click)="AddItem(newItem)">Add Item</button>
+        </div>
+        </form>
+    </div>
+</div>

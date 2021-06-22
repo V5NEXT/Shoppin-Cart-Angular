@@ -1,0 +1,29 @@
+.form-control.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+.main-form{
+    height: 100vh;
+    position: relative;
+    background-image: url('../../assets/banner.jpg');
+    background-size: cover;
+
+}
+.btn-class{
+    text-align: center;
+}
+.logo{
+    max-width: 10%;
+    border: 1px solid;
+}
+.inner-html{
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 90%;
+    margin-left: 5%;
+}
+.logo-div{
+    text-align: center;
+}
+
