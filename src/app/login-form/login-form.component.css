@@ -4,7 +4,7 @@
 .main-form{
     height: 100vh;
     position: relative;
-    background-image: url('assets/banner.jpg');
+    background-image: url('../../assets/banner.jpg');
     background-size: cover;
 
 }
